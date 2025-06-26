@@ -20,7 +20,7 @@ public class ghost : MonoBehaviour
     [SerializeField] float AttackSpeed = 2;
 
     [SerializeField] float MoveSpeed = 7f;
-    [SerializeField] float RunSpeed = 14f;
+    [SerializeField] float RunSpeed = 10f;
 
     [SerializeField] Transform[] WayPoints;
     Transform TargetPoint;

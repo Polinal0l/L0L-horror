@@ -43,11 +43,15 @@ public class plaer : MonoBehaviour
             
             currentSpeed = movementSpeed;
         }
+        if (direction.x != 0 || direction.z != 0)
+        {
+            anim.SetBool("runn", true);
+            anim.SetBool("id", false);
+        }
         if (direction.x == 0 && direction.z == 0) 
         {
             anim.SetBool("runn", false);
             anim.SetBool("id",true);
-
         }
     }
 
