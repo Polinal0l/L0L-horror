@@ -8,15 +8,15 @@ public class plaer : MonoBehaviour
     float currentSpeed;
     Rigidbody rb;
     Vector3 direction;
+    [SerializeField] float shiftSpeed = 10f;
 
-    //[SerializeField] Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        currentSpeed = movementSpeed;
-        //anim = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -27,16 +27,21 @@ public class plaer : MonoBehaviour
         direction = new Vector3(moveHorizontal, 0.0f, moveVertical);
         direction = transform.TransformDirection(direction);
 
-        //if(direction.x != 0 || direction.z != 0) 
-        //{
-        //    anim.SetBool("run", true);
-        //}
-        //if (direction.x == 0 && direction.z == 0)
-        //{
-        //    anim.SetBool("run", false);
-        //}
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            currentSpeed = movementSpeed;
+        }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = shiftSpeed;
 
+        }
+        else if (!Input.GetKey(KeyCode.LeftShift))
+        {
+            
+            currentSpeed = movementSpeed;
+        }
 
     }
 
@@ -45,5 +50,5 @@ public class plaer : MonoBehaviour
         rb.MovePosition(transform.position + direction * currentSpeed * Time.deltaTime);
     }
 
-
+    
 }
