@@ -9,14 +9,14 @@ public class plaer : MonoBehaviour
     Rigidbody rb;
     Vector3 direction;
     [SerializeField] float shiftSpeed = 10f;
-
+    [SerializeField] Animator anim;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,13 +36,19 @@ public class plaer : MonoBehaviour
         {
             currentSpeed = shiftSpeed;
 
+
         }
         else if (!Input.GetKey(KeyCode.LeftShift))
         {
             
             currentSpeed = movementSpeed;
         }
+        if (direction.x == 0 && direction.z == 0) 
+        {
+            anim.SetBool("runn", false);
+            anim.SetBool("id",true);
 
+        }
     }
 
     void FixedUpdate()
