@@ -17,7 +17,7 @@ public class ghost : MonoBehaviour
     [SerializeField] int damage;
 
     float timer;
-    [SerializeField] float AttackSpeed = 2;
+    [SerializeField] float AttackSpeed = 5;
 
     [SerializeField] float MoveSpeed = 7f;
     [SerializeField] float RunSpeed = 10f;

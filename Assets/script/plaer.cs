@@ -37,7 +37,7 @@ public class plaer : MonoBehaviour
             currentSpeed = shiftSpeed;
             anim.SetBool("runn", true);
             anim.SetBool("id", false);
-
+            anim.SetBool("walk", false);
         }
         else if (!Input.GetKey(KeyCode.LeftShift))
         {
@@ -46,13 +46,15 @@ public class plaer : MonoBehaviour
         }
         if (direction.x != 0 || direction.z != 0)
         {
-            anim.SetBool("runn", true);
+            anim.SetBool("runn", false);
             anim.SetBool("id", false);
+            anim.SetBool("walk",true);
         }
         if (direction.x == 0 && direction.z == 0) 
         {
             anim.SetBool("runn", false);
             anim.SetBool("id",true);
+            anim.SetBool("walk", false);
         }
     }
 
