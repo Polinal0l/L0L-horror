@@ -33,7 +33,7 @@ public class plaer : MonoBehaviour
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
-        {
+        { 
             currentSpeed = shiftSpeed;
             anim.SetBool("runn", true);
             anim.SetBool("id", false);
