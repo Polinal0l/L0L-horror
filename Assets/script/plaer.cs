@@ -32,23 +32,25 @@ public class plaer : MonoBehaviour
             currentSpeed = movementSpeed;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        { 
-            currentSpeed = shiftSpeed;
-            anim.SetBool("runn", true);
-            anim.SetBool("id", false);
-            anim.SetBool("walk", false);
-        }
-        else if (!Input.GetKey(KeyCode.LeftShift))
-        {
-            
-            currentSpeed = movementSpeed;
-        }
+        
         if (direction.x != 0 || direction.z != 0)
         {
-            anim.SetBool("runn", false);
-            anim.SetBool("id", false);
-            anim.SetBool("walk",true);
+            
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                currentSpeed = shiftSpeed;
+                anim.SetBool("runn", true);
+                anim.SetBool("id", false);
+                anim.SetBool("walk", false);
+            }
+            else 
+            {
+                anim.SetBool("runn", false);
+                anim.SetBool("id", false);
+                anim.SetBool("walk", true);
+                currentSpeed = movementSpeed;
+            }
         }
         if (direction.x == 0 && direction.z == 0) 
         {

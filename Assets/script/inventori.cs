@@ -15,7 +15,7 @@ public class inventori : MonoBehaviour
         public GameObject inHand;
         public string itemName;
     }
-
+    [SerializeField] Transform drop;
     [SerializeField] item[] items;
     
     void Start()
@@ -30,11 +30,18 @@ public class inventori : MonoBehaviour
         {
             CollactableItem ci = hit.collider.GetComponent<CollactableItem>();
             if (ci != null)
-            {
+            {   
                 help.SetActive(true);
-                if (Input.GetKey(KeyCode.E)) 
+                if (Input.GetKeyDown(KeyCode.E)) 
                 {
-                 Destroy(hit.collider.gameObject);
+                    if (itemCurrentItem >= 0)
+                    {
+                        GameObject dropitem = Instantiate(items[itemCurrentItem].dropItem);
+                        dropitem.transform.position = drop.position;
+                        items[itemCurrentItem].inHand.SetActive(false);
+                        itemCurrentItem = -1;
+                    }
+                    Destroy(hit.collider.gameObject);
                     int itemid = -1;
                     for (int i = 0; i < items.Length; i++)
                     {
@@ -42,6 +49,7 @@ public class inventori : MonoBehaviour
                             itemid = i;
                     }
                     items[itemid].inHand.SetActive(true);
+                    itemCurrentItem = itemid;
                 }
 
             }
@@ -53,6 +61,13 @@ public class inventori : MonoBehaviour
         else
         {
             help.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && itemCurrentItem >= 0) 
+        {
+            GameObject dropitem = Instantiate(items[itemCurrentItem].dropItem);
+            dropitem.transform.position = drop.position;
+            items[itemCurrentItem].inHand.SetActive(false);
+            itemCurrentItem = -1;
         }
     }
 }
