@@ -9,25 +9,30 @@ public class ghost : MonoBehaviour
     [SerializeField] Transform target;
     NavMeshAgent agent;
     [SerializeField] Animator anim;
-    [SerializeField] float attackDistance = 3;
+    [SerializeField] float attackDistance = 4;
     float distance;
     bool dead = true;
     
-    [SerializeField] float detectionDistance = 100;
+    [SerializeField] float detectionDistance = 70;
     [SerializeField] int damage;
 
     float timer;
-    [SerializeField] float AttackSpeed = 5;
+    [SerializeField] float AttackSpeed = 10;
 
     [SerializeField] float MoveSpeed = 7f;
     [SerializeField] float RunSpeed = 10f;
 
     [SerializeField] Transform[] WayPoints;
+
     Transform TargetPoint;
+
+    protected GameObject player;
+    [SerializeField] protected int health;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        player = FindObjectOfType<plaer>().gameObject;
     }
 
     // Update is called once per frame
@@ -75,10 +80,21 @@ public class ghost : MonoBehaviour
                 timer = 0;
                 //player.Damage
                 anim.SetTrigger("attack");
+
+                Attack();
             }
             anim.SetBool("idle", false);
             anim.SetBool("walk", false);
             anim.SetBool("run", false);
+        }
+    }
+
+  
+    public void Attack()
+    {
+        if (distance < attackDistance)
+        {
+            player.GetComponent<plaer>().ChangeHealth(damage);
         }
     }
 }

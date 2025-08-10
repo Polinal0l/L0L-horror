@@ -11,12 +11,15 @@ public class plaer : MonoBehaviour
     [SerializeField] float shiftSpeed = 10f;
     [SerializeField] Animator anim;
 
+    private int health;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        health = 1;
     }
 
     // Update is called once per frame
@@ -65,5 +68,20 @@ public class plaer : MonoBehaviour
         rb.MovePosition(transform.position + direction * currentSpeed * Time.deltaTime);
     }
 
-    
+    public void ChangeHealth(int count)
+    {
+        //вычитаем здоровье
+        health -= count;
+        //если здоровье меньше либо равно нулю, то...
+        if (health <= 0)
+        {
+            anim.SetBool("die", true);
+            anim.SetBool("id", false);
+            anim.SetBool("walk", false);
+            anim.SetBool("runn", false);
+            this.enabled = false;
+        }
+    }
+
+
 }
