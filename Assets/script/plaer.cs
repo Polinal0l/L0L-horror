@@ -65,7 +65,7 @@ public class plaer : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(transform.position + direction * currentSpeed * Time.deltaTime);
+        rb.AddForce(direction * currentSpeed, ForceMode.Acceleration);
     }
 
     public void ChangeHealth(int count)
