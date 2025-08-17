@@ -67,7 +67,7 @@ public class inventori : MonoBehaviour
             GameObject dropitem = Instantiate(items[itemCurrentItem].dropItem);
             dropitem.transform.position = drop.position;
             items[itemCurrentItem].inHand.SetActive(false);
-            itemCurrentItem = -1;
+            itemCurrentItem = -1; 
         }
     }
 }
