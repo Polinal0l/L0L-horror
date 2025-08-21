@@ -10,6 +10,7 @@ public class plaer : MonoBehaviour
     Vector3 direction;
     [SerializeField] float shiftSpeed = 10f;
     [SerializeField] Animator anim;
+    [SerializeField]LayerMask layerMask;
 
     private int health;
 
@@ -60,6 +61,20 @@ public class plaer : MonoBehaviour
             anim.SetBool("runn", false);
             anim.SetBool("id",true);
             anim.SetBool("walk", false);
+        }
+        RaycastHit hit;
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward,out hit,100,layerMask)) 
+            
+            {
+            wall w = hit.collider.GetComponentInParent<wall>();
+                if (w != null && inventori.savetipe.HasFlag(worktipe.wall)) 
+                {
+                w.Chengrb(false);
+                
+                }
+            }
         }
     }
 

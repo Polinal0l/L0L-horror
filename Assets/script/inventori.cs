@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -11,13 +12,14 @@ public class inventori : MonoBehaviour
     [System.Serializable]
     public class item 
     {
+        public worktipe tipe;
         public GameObject dropItem;
         public GameObject inHand;
         public string itemName;
     }
     [SerializeField] Transform drop;
     [SerializeField] item[] items;
-    
+    public static worktipe savetipe;
     void Start()
     {
         
@@ -40,6 +42,7 @@ public class inventori : MonoBehaviour
                         dropitem.transform.position = drop.position;
                         items[itemCurrentItem].inHand.SetActive(false);
                         itemCurrentItem = -1;
+                        savetipe = worktipe.None;
                     }
                     Destroy(hit.collider.gameObject);
                     int itemid = -1;
@@ -50,6 +53,7 @@ public class inventori : MonoBehaviour
                     }
                     items[itemid].inHand.SetActive(true);
                     itemCurrentItem = itemid;
+                    savetipe = items[itemid].tipe;
                 }
 
             }
@@ -71,3 +75,11 @@ public class inventori : MonoBehaviour
         }
     }
 }
+[System.Serializable]
+[Flags]
+public enum worktipe 
+{None = 0,
+    wall = 1<<0
+}
+//item2 = 1<<1,
+//item3 = 1<<2 
