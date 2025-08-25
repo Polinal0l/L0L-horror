@@ -5,6 +5,7 @@ using UnityEngine.Playables;
 
 public class cutScena : MonoBehaviour
 {
+    [SerializeField] PlayableDirector cutScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +16,13 @@ public class cutScena : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("lokc"))
+        {
+            cutScene.Play();
+            Destroy(gameObject);
+        }
     }
 }
